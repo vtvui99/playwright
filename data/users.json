@@ -6,5 +6,9 @@
     "testUser": {
         "username": "test",
         "password": "TEST"
+    },
+    "invalidUser": {
+        "username": "abc",
+        "password": "abc"
     }
 }
