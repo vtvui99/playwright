@@ -30,7 +30,7 @@ export class DashboardMainPage extends BasePage{
     }
 
     async deletePage() {
-        await Actions.delay(1000);       
+        await Actions.delay();       
         await this.globalSettings.click();
         this.page.once('dialog', async(dialog) => {
             await dialog.accept();
@@ -40,7 +40,7 @@ export class DashboardMainPage extends BasePage{
 
     async verifyMessageWhenDeletePageWithchildPage(parentPage: string, deleteWarningMessage: string, deleteConfirmMessage: string) {
         this.navigateToMainPage(parentPage);
-        await Actions.delay(1000);
+        await Actions.delay();
         await this.globalSettings.click();
         this.page.once('dialog', async dialog => {
             this.page.once('dialog', async dialog => {
