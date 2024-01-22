@@ -14,5 +14,5 @@ test("Verify that Data Profiles are listed alphabetically", async ({page}) => {
     const dataProfilePage = new DataProfilePage(page);
     
     await dataProfilePage.navigateToDataProfilePage();
-    // Assertion.assertTrue(await dataProfilePage.isDataProfileListAlphabeticalOrder());
+    Assertion.assertTrue(await dataProfilePage.isDataProfileListAlphabeticalOrder());
 })
