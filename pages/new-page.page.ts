@@ -1,4 +1,12 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator, test } from "@playwright/test";
+
+export type NewPageData = {
+    pageName: string;
+    parentPage?: string;
+    numberOfColumn?: string;
+    displayAfter?: string;
+    isPublic?: boolean;
+};
 
 export class NewPage {
     readonly newPageNameTxt: Locator = this.page.locator("#name");
@@ -9,18 +17,19 @@ export class NewPage {
     readonly okBtn: Locator = this.page.locator("#OK");
     constructor(readonly page: Page) {}
 
-    async createNewPage(newpageName: string, parentPage?: string, numberOfColumn?: string, displayAfter?: string, isPublic?: boolean) {
-        await this.newPageNameTxt.fill(newpageName);
-        if (parentPage != null && parentPage != undefined) {
-            await this.parentPageSelection.selectOption(parentPage);
+    async createNewPage(data: NewPageData) {
+        await this.newPageNameTxt.waitFor();
+        await this.newPageNameTxt.fill(data.pageName);
+        if (data.parentPage != null && data.parentPage != undefined) {
+            await this.parentPageSelection.selectOption(data.parentPage);
         }
-        if (numberOfColumn != null && numberOfColumn != undefined) {
-            await this.numberOfColumnSelection.selectOption(numberOfColumn);
+        if (data.numberOfColumn != null && data.numberOfColumn != undefined) {
+            await this.numberOfColumnSelection.selectOption(data.numberOfColumn);
         }
-        if (displayAfter != null && displayAfter != undefined) {
-            await this.displayAfterSelection.selectOption(displayAfter);
+        if (data.displayAfter != null && data.displayAfter != undefined) {
+            await this.displayAfterSelection.selectOption(data.displayAfter);
         }
-        if (isPublic != null && isPublic != undefined) {
+        if (data.isPublic != null && data.isPublic != undefined) {
             await this.publicCheckbox.check();
         }
         await this.okBtn.click();

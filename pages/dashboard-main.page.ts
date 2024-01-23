@@ -54,4 +54,22 @@ export class DashboardMainPage extends BasePage{
         });
         await this.deleteBtn.click();
     }
+
+    async navigateToPage(levelItem: string): Promise<void> {
+        const menuItems: Array<string> = levelItem.split("->").map((s) => s.trim());
+        if (menuItems.length > 5) {
+          throw new Error("Too many nested pages");
+        }
+    
+        if (menuItems.length == 1) {
+          await this.page.getByText(menuItems[0]).click();
+          return;
+        }
+    
+        for (let i = 0; i < menuItems.length - 1; i++) {
+          await this.page.getByText(menuItems[i]).hover();
+        }
+    
+        await this.page.getByText(menuItems[menuItems.length - 1]).click();
+      }
 }

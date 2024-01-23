@@ -10,7 +10,7 @@ test.beforeEach(async ({page}) => {
     await loginPage.login(users.adminUser.username, users.adminUser.password);
 });
 
-test("Verify that Data Profiles are listed alphabetically", async ({page}) => {
+test("DA_DP_TC067 - Verify that Data Profiles are listed alphabetically", async ({page}) => {
     const dataProfilePage = new DataProfilePage(page);
     
     await dataProfilePage.navigateToDataProfilePage();

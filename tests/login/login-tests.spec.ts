@@ -5,7 +5,7 @@ import message from "../../data/message.json";
 import users from "../../data/users.json"
 
 test.describe('Login Tests', () => {
-    test('Verify that user can login specific repository successfully via Dashboard login page with correct credentials', async ({page}) => {
+    test('DA_LOGIN_TC001 - Verify that user can login specific repository successfully via Dashboard login page with correct credentials', async ({page}) => {
         const loginPage = new LoginPage(page);
         await loginPage.go();
         await loginPage.login(users.adminUser.username, users.adminUser.password);
@@ -14,7 +14,7 @@ test.describe('Login Tests', () => {
         await mainPage.display();
     });
 
-    test ('Verify that user fails to login specific repository successfully via Dashboard login page with incorrect credentials', async({page}) => {
+    test ('DA_LOGIN_TC002 - Verify that user fails to login specific repository successfully via Dashboard login page with incorrect credentials', async({page}) => {
         const loginPage = new LoginPage(page);
         await loginPage.go();
 

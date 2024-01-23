@@ -10,13 +10,13 @@ test.beforeEach(async ({page}) => {
     await loginPage.login(users.adminUser.username, users.adminUser.password);
 });
 
-test('Verify that "Public" pages can be visible and accessed by all users of working repository', async({page}) => {
+test('DA_MP_TC014 - Verify that "Public" pages can be visible and accessed by all users of working repository', async({page}) => {
     const mainPage = new DashboardMainPage(page);
     const newPage = new NewPage(page);
     const pageName = "Test" + Date.now();
 
     mainPage.clickAddPageBtn();
-    await newPage.createNewPage(pageName, undefined, undefined, undefined, true);
+    await newPage.createNewPage({pageName: pageName, isPublic: true});
     await mainPage.isMainPageDisplayed(pageName);
 
     mainPage.logout();
@@ -25,6 +25,6 @@ test('Verify that "Public" pages can be visible and accessed by all users of wor
     await loginPage.login(users.testUser.username, users.testUser.password);
     await mainPage. isMainPageDisplayed(pageName)
 
-    await mainPage.navigateToMainPage(pageName);
+    await mainPage.navigateToPage(pageName);
     await mainPage.deletePage();
 });

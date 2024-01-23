@@ -10,7 +10,7 @@ test.beforeEach(async ({page}) => {
     await loginPage.login(users.adminUser.username, users.adminUser.password);
 });
 
-test("Verify that when 'Add New Panel' form is on focused all other control/form is disabled or locked.", async ({page}) => {
+test("DA_PANEL_TC028 - Verify that when 'Add New Panel' form is on focused all other control/form is disabled or locked.", async ({page}) => {
     const panelPage = new PanelPage(page);
 
     await panelPage.navigateToPanelPage();

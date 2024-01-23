@@ -1,6 +1,6 @@
 import { Locator } from "@playwright/test";
 import { BasePage } from "./base.page";
-import { TableHandle } from "../utils/table-handle";
+import { TableHandle } from "../utils/elements/table-handle";
 import { Utils } from "../utils/utils";
 
 export class DataProfilePage extends BasePage {

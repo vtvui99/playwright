@@ -12,27 +12,27 @@ test.beforeEach(async ({page}) => {
     await loginPage.login(users.adminUser.username, users.adminUser.password);
 });
 
-test("Verify that user can remove any main parent page except 'Overview' page successfully and the order of pages stays persistent as long as there is not children page under it", async({page}) => {
+test("DA_MP_TC017 - Verify that user can remove any main parent page except 'Overview' page successfully and the order of pages stays persistent as long as there is not children page under it", async({page}) => {
     const mainPage = new DashboardMainPage(page);
     const newPage = new NewPage(page);
     const pageName = "Test" + Date.now();
     const childPage = "Test2" + Date.now();
 
     await mainPage.clickAddPageBtn();
-    await newPage.createNewPage(pageName);
+    await newPage.createNewPage({pageName: pageName});
     await mainPage.clickAddPageBtn();
-    await newPage.createNewPage(childPage, pageName);
+    await newPage.createNewPage({pageName: childPage, parentPage: pageName});
 
     // Delete main page that has child page and verify message
     let expectedDeleteWarningMessage = StringHelper.formatString(message.deletePage_warningMessage, pageName);
     await mainPage.verifyMessageWhenDeletePageWithchildPage(pageName, expectedDeleteWarningMessage, message.deletePage_confirmMessage);
 
     // Delete child page and verify message
-    await mainPage.navigateToChildPage(pageName, childPage);
+    await mainPage.navigateToPage(`${pageName}->${childPage}`);
     await mainPage.deletePage();
 
     // Delete main page and verify message
-    await mainPage.navigateToMainPage(pageName);
+    await mainPage.navigateToPage(pageName);
     await mainPage.deletePage();
 
 })

@@ -1,4 +1,4 @@
-import { StringHelper } from "./string-helper";
+import { StringHelper } from "../string-helper";
 import { Locator, Page } from "@playwright/test";
 
 export class TableHandle {
