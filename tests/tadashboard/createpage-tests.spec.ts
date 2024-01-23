@@ -26,5 +26,5 @@ test('Verify that "Public" pages can be visible and accessed by all users of wor
     await mainPage. isMainPageDisplayed(pageName)
 
     await mainPage.navigateToMainPage(pageName);
-    await mainPage.deletePage(pageName);
+    await mainPage.deletePage();
 });
